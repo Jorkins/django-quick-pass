@@ -44,4 +44,9 @@ python manage.py runserver
 
 ## 关注作者
 
-![关注作者](docs/images/wechat-follow-banner.svg)
+如果你对 AI 及本项目感兴趣，欢迎关注我的微信公众号 **码上栈记**，将持续带来更多高质量文章和干货。
+
+<p align="center">
+  <img src="docs/images/wechat-follow-banner@2x.png" alt="微信搜一搜：码上栈记" width="480">
+</p>
+
