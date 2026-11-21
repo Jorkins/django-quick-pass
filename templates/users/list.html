@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}用户列表 · Django 快速通关{% endblock %}
+
+{% block content %}
+<h2>用户列表</h2>
+<ul>
+    {% for user in users %}
+        <li>{{ user.username }} ({{ user.get_role_display }}) - {{ user.department }}</li>
+    {% empty %}
+        <li>暂无用户</li>
+    {% endfor %}
+</ul>
+<p><a href="{% url 'user-me-template' %}">查看我的信息</a></p>
+{% endblock %}

@@ -1,0 +1,56 @@
+# docker-compose.yml · Django 快速通关 · 本地一键启动
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: djangopass
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  web:
+    build: .
+    environment:
+      - DB_ENGINE=django.db.backends.postgresql
+      - DB_NAME=djangopass
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_HOST=db
+      - DB_PORT=5432
+      - REDIS_URL=redis://redis:6379/0
+      - SECRET_KEY=dev-secret-key-change-me
+      - DEBUG=True
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - redis
+    command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+
+  worker:
+    build: .
+    environment:
+      - DB_ENGINE=django.db.backends.postgresql
+      - DB_NAME=djangopass
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_HOST=db
+      - DB_PORT=5432
+      - REDIS_URL=redis://redis:6379/0
+    depends_on:
+      - db
+      - redis
+    command: celery -A config worker -l info
+
+volumes:
+  postgres_data:

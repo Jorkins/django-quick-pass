@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}任务看板 · Django 快速通关{% endblock %}
+
+{% block content %}
+<h2>任务看板</h2>
+<table border="1" cellpadding="8">
+    <thead>
+        <tr>
+            <th>标题</th><th>优先级</th><th>状态</th><th>负责人</th><th>创建时间</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for task in tasks %}
+        <tr>
+            <td>{{ task.title }}</td>
+            <td>{{ task.get_priority_display }}</td>
+            <td>{{ task.get_status_display }}</td>
+            <td>{{ task.owner.username }}</td>
+            <td>{{ task.created_at }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="5">暂无任务</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

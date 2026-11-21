@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}我的信息 · Django 快速通关{% endblock %}
+
+{% block content %}
+<h2>我的信息</h2>
+<p><strong>用户名：</strong>{{ user.username }}</p>
+<p><strong>邮箱：</strong>{{ user.email }}</p>
+<p><strong>角色：</strong>{{ user.get_role_display }}</p>
+<p><strong>部门：</strong>{{ user.department }}</p>
+<p><a href="/admin/">进入后台</a></p>
+{% endblock %}

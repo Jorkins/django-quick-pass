@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Django 快速通关{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1><a href="/">Django 快速通关</a></h1>
+            <nav>
+                <a href="/api/users/template/list/">用户管理</a>
+                <a href="/api/tasks/template/list/">任务看板</a>
+                <a href="/admin/">后台</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <p>Django 快速通关 · 架构与实战系列 &copy; 2026</p>
+    </footer>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

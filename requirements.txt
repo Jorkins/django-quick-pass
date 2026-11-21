@@ -1,0 +1,25 @@
+# Django 快速通关系列 · 基础依赖
+Django>=5.1,<6.0
+
+# 数据库
+psycopg2-binary>=2.9.9
+
+# REST API（模块 3）
+djangorestframework>=3.15.2
+djangorestframework-simplejwt>=5.3.0
+django-cors-headers>=4.3.0
+
+# 异步任务（模块 3.4）
+celery>=5.3.6
+redis>=5.0.1
+
+# 缓存与性能
+django-redis>=5.4.0
+
+# 开发工具
+django-debug-toolbar>=4.5.0
+python-decouple>=3.8
+
+# 部署
+gunicorn>=22.0.0
+whitenoise>=6.6.0
